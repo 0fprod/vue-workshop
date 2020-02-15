@@ -1,4 +1,4 @@
-import { OrganizationMember, createEmptyMember } from "./model/members.model";
+import { OrganizationMember, createEmptyMember } from "../model/members.model";
 
 const checkStatus = (response: Response): Promise<Response> => {
   if (response.status >= 200 && response.status < 300) {
