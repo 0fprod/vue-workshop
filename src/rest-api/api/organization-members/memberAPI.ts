@@ -1,4 +1,4 @@
-import { OrganizationMember, createEmptyMember } from "../model/members.model";
+import { OrganizationMember, createEmptyMember } from '../model/members.model';
 
 const checkStatus = (response: Response): Promise<Response> => {
   if (response.status >= 200 && response.status < 300) {
@@ -18,8 +18,8 @@ const resolveMembers = (data: any): Promise<OrganizationMember[]> => {
     var member: OrganizationMember = createEmptyMember();
 
     member.id = gitHubMember.id;
-    member.name = gitHubMember.login;
-    member.avatarUrl = gitHubMember.avatar_url;
+    member.login = gitHubMember.login;
+    member.avatar_url = gitHubMember.avatar_url;
 
     return member;
   });
@@ -27,7 +27,9 @@ const resolveMembers = (data: any): Promise<OrganizationMember[]> => {
   return Promise.resolve(members);
 };
 
-export const getAllMembers = (organizationName: string): Promise<OrganizationMember[]> => {
+export const getAllMembers = (
+  organizationName: string
+): Promise<OrganizationMember[]> => {
   const gitHubMembersUrl: string = `https://api.github.com/orgs/${organizationName}/members`;
 
   return fetch(gitHubMembersUrl)

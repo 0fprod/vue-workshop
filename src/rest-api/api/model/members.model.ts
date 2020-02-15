@@ -1,11 +1,11 @@
 export interface OrganizationMember {
   id: number;
-  name: string;
-  avatarUrl: string;
+  login: string;
+  avatar_url: string;
 }
 
 export const createEmptyMember = (): OrganizationMember => ({
-  avatarUrl: "",
+  avatar_url: '',
   id: -1,
-  name: ""
+  login: '',
 });

@@ -1,26 +1,21 @@
 <template>
-  <h1>hello</h1>
+  <h1>hello {{ id }}</h1>
 </template>
 
 <script lang="ts">
-import Vue from "vue";
+import Vue from 'vue';
 
 export default Vue.extend({
-  name: "UserProfile",
+  name: 'UserProfile',
   components: {},
+  props: {
+    id: String,
+  },
   data() {
-    return {
-      
-    };
+    return {};
   },
-  created() {
-
-  },
-  methods: {
-
-  },
-  computed: {
-
-  }
+  created() {},
+  methods: {},
+  computed: {},
 });
 </script>

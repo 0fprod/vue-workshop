@@ -23,6 +23,8 @@ export default Vue.extend({
       this.$store.commit('setCurrentOrganization', {
         currentOrganization: this.searchText,
       });
+
+      this.$store.dispatch('loadMembers');
     },
     onSearchTextChange(term: string) {
       this.searchText = term;
