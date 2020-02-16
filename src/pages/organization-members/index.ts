@@ -1,3 +1,4 @@
 import OrganizationMembersPageContainer from './PageContainer.vue';
-export { mapApiModelToVm } from './mappers';
 export { OrganizationMembersPageContainer };
+export * from './mappers';
+export * from './viewModel';
