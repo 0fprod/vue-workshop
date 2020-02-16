@@ -1,7 +1,14 @@
 <template>
   <div>
     <search-bar-component v-bind="{searchText, onSearch, onSearchTextChange}" />
-    <v-data-table :headers="headers" :items="members" :items-per-page="5" class="elevation-1">
+    <filter-component v-bind="{filterText, onFilterTextChange}" />
+    <v-data-table
+      :headers="headers"
+      :items="members"
+      :items-per-page="5"
+      :search="filterText"
+      class="elevation-1"
+    >
       <template v-slot:items="props">
         <td>
           <v-avatar>
@@ -20,11 +27,11 @@
 <script lang="ts">
 import Vue, { PropOptions } from 'vue';
 import { MemberVm } from './viewModel';
-import { SearchBarComponent } from './components';
+import { SearchBarComponent, FilterComponent } from './components';
 
 export default Vue.extend({
   name: 'OrganizationMembersPage',
-  components: { SearchBarComponent },
+  components: { SearchBarComponent, FilterComponent },
   data() {
     return {
       headers: [
@@ -39,6 +46,8 @@ export default Vue.extend({
     onSearch: {} as PropOptions<() => void>,
     onSearchTextChange: {} as PropOptions<(term: string) => void>,
     members: {} as PropOptions<MemberVm[]>,
+    onFilterTextChange: {} as PropOptions<(term: string) => void>,
+    filterText: {} as PropOptions<string>,
   },
 });
 </script>

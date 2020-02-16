@@ -1,5 +1,13 @@
 <template>
-  <organization-members-page v-bind="{ members, searchText, onSearch, onSearchTextChange }"></organization-members-page>
+  <organization-members-page
+    v-bind="{ 
+      members,
+      searchText,
+      onSearch,
+      onSearchTextChange,
+      filterText, 
+      onFilterTextChange }"
+  ></organization-members-page>
 </template>
   
 <script lang="ts">
@@ -13,6 +21,7 @@ export default Vue.extend({
   data() {
     return {
       searchText: 'lemoncode',
+      filterText: '',
     };
   },
   async created() {
@@ -35,6 +44,9 @@ export default Vue.extend({
     },
     onSearchTextChange(term: string) {
       this.searchText = term;
+    },
+    onFilterTextChange(name: string) {
+      this.filterText = name;
     },
   },
   computed: {
