@@ -16,15 +16,22 @@ export default Vue.extend({
     };
   },
   async created() {
-    await this.$store.dispatch('loadMembers');
+    this.$store.commit('setLoading', { loading: true });
+    await this.$store.dispatch('loadMembers').finally(() => {
+      this.$store.commit('setLoading', { loading: false });
+    });
   },
   methods: {
     onSearch() {
+      this.$store.commit('setLoading', { loading: true });
+
       this.$store.commit('setCurrentOrganization', {
         currentOrganization: this.searchText,
       });
 
-      this.$store.dispatch('loadMembers');
+      this.$store.dispatch('loadMembers').finally(() => {
+        this.$store.commit('setLoading', { loading: false });
+      });
     },
     onSearchTextChange(term: string) {
       this.searchText = term;

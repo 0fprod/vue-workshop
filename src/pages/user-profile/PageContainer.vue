@@ -19,7 +19,11 @@ export default Vue.extend({
     };
   },
   async created() {
-    await this.$store.dispatch('loadUser', { userId: this.id });
+    this.$store.commit('setLoading', { loading: true });
+
+    await this.$store.dispatch('loadUser', { userId: this.id }).finally(() => {
+      this.$store.commit('setLoading', { loading: false });
+    });
   },
   computed: {
     user(): UserProfileVm {
